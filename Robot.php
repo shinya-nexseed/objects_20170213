@@ -6,15 +6,31 @@ class Robot{
     // メソッド = 実行する処理 = 関数
 
     // プロパティの定義
-    public $name = '';
+    private $name = '';
     public $gender = '';
     public $food = '';
     private $weight = '';
     // アクセス修飾子 public / private / protected
 
+    // コンストラクタ
+    // クラスをインスタンス化した際に自動的に呼ばれるメソッド
+    // 生成されたオブジェクトの初期状態を決める際に使う
+    function __construct($name) {
+        $this->name = $name;
+        echo $this->name . '誕生<br>';
+    }
+
     // カプセル化
     // カプセル化とは、クラス内に定義されたプロパティを外部からアクセス禁止にし、値を取得・設定するための２つのメソッド（ゲッター・セッター）を用意することで使用可能にする手法のこと
     // 基本的にオブジェクト指向で定義するプロパティはすべてカプセル化する
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
 
     // ゲッター（各プロパティの値をゲットするためのメソッド）
     public function getWeight() {
@@ -52,27 +68,29 @@ class Robot{
 
 // クラスから作られたものがオブジェクト（インスタンス）
 // クラスをインスタンス化することで実際に使用できるオブジェクトになる
-$doraemon = new Robot();
+$doraemon = new Robot('ドラえもん');
 // $doraemonがRobotクラスから生成されたオブジェクト
 // newがインスタンス化することを宣言
 
-$doramichan = new Robot();
+$doramichan = new Robot('ドラミちゃん');
 
 // クラス内のプロパティ・メソッドの実行方法
 // オブジェクト->プロパティ
 // オブジェクト->メソッド()
-$doraemon->name = 'ドラえもん'; // プロパティに値をセット
+// $doraemon->name = 'ドラえもん'; // プロパティに値をセット
+$doraemon->setName('ドラえもん');
 $doraemon->gender = 'Men';
 $doraemon->food = 'どら焼き';
 // $doraemon->weight = 300;
 $doraemon->setWeight(70);
-echo $doraemon->name . 'の体重は' . $doraemon->getWeight() . 'です。<br>';
+echo $doraemon->getName() . 'の体重は' . $doraemon->getWeight() . 'です。<br>';
 $doraemon->greeting($doraemon->gender); // メソッドを実行
 // ->のことをアロー演算子という
-echo $doraemon->name;
+// echo $doraemon->name;
 $doraemon->pocket();
 
-$doramichan->name = 'ドラミちゃん';
+// $doramichan->name = 'ドラミちゃん';
+$doramichan->setName('ドラミちゃん');
 $doramichan->gender = 'Women';
 $doramichan->food = 'メロンパン';
 $doramichan->greeting($doramichan->gender);
